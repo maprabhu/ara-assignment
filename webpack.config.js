@@ -9,7 +9,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(sass|css|scss)$/,
+        test: /\.(css|sass|scss)$/,
         exclude: /node_modules/,
         use: [
           {
@@ -18,7 +18,26 @@ module.exports = {
           {
             loader: "css-loader",
           },
-          { loader: "sass-loader" }
+          {
+            loader: "resolve-url-loader",
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /semantic\.min\.css$/,
+        use: [
+          {
+            loader: "style-loader",
+          },
+          {
+            loader: "css-loader",
+          },
         ],
       },
       {
